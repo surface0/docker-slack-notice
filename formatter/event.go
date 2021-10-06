@@ -59,8 +59,8 @@ func containerEvent(e events.Message, filter EventFilter) *slack.Message {
 				},
 			},
 		}
-	case e.Action == "kill":
-		fallthrough
+//	case e.Action == "kill":
+//		fallthrough
 	case e.Action == "die":
 		var color string
 		switch e.Actor.Attributes["exitCode"] {

@@ -4,7 +4,7 @@ import (
 	"context"
 	"os"
 
-	"github.com/int128/slack-docker/cmd"
+	"slack-docker/cmd"
 )
 
 func main() {

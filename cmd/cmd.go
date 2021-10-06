@@ -10,7 +10,7 @@ import (
 	"github.com/docker/docker/api/types"
 	"github.com/docker/docker/client"
 	"github.com/int128/slack"
-	"github.com/int128/slack-docker/formatter"
+	"slack-docker/formatter"
 	"github.com/jessevdk/go-flags"
 )
 
