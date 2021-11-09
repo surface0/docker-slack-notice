@@ -2,9 +2,10 @@ package formatter
 
 import (
 	"fmt"
+	"regexp"
+
 	"github.com/docker/docker/api/types/events"
 	"github.com/int128/slack"
-	"regexp"
 )
 
 // EventFilter represents a filter for events.
@@ -59,8 +60,8 @@ func containerEvent(e events.Message, filter EventFilter) *slack.Message {
 				},
 			},
 		}
-//	case e.Action == "kill":
-//		fallthrough
+		//	case e.Action == "kill":
+		//		fallthrough
 	case e.Action == "die":
 		var color string
 		switch e.Actor.Attributes["exitCode"] {
@@ -146,8 +147,8 @@ func volumeEvent(e events.Message) *slack.Message {
 			IconEmoji: iconEmoji,
 			Attachments: []slack.Attachment{
 				slack.Attachment{
-					Title:     fmt.Sprintf(":oil_drum: Started %s", e.Actor.Attributes["name"]),
-					Text:      fmt.Sprintf("Volume `%s` has been created.", e.Actor.Attributes["name"]),
+					Title:     fmt.Sprintf(":oil_drum: Created %s", e.Actor.ID),
+					Text:      fmt.Sprintf("Volume `%s` has been created.", e.Actor.ID),
 					Footer:    e.Actor.ID,
 					Color:     "good",
 					Timestamp: e.Time,
@@ -161,8 +162,8 @@ func volumeEvent(e events.Message) *slack.Message {
 			IconEmoji: iconEmoji,
 			Attachments: []slack.Attachment{
 				slack.Attachment{
-					Title:     fmt.Sprintf(":oil_drum: Removed %s", e.Actor.Attributes["name"]),
-					Text:      fmt.Sprintf("Volume `%s` has been removed.", e.Actor.Attributes["name"]),
+					Title:     fmt.Sprintf(":oil_drum: Removed %s", e.Actor.ID),
+					Text:      fmt.Sprintf("Volume `%s` has been removed.", e.Actor.ID),
 					Footer:    e.Actor.ID,
 					Color:     "warning",
 					Timestamp: e.Time,
